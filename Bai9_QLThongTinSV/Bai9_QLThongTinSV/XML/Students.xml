@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<students>
+  <student id="1">
+    <FullName>Vayne</FullName>
+    <DateOfBirth>5/5/2020</DateOfBirth>
+    <Avatar>04.jpg</Avatar>
+  </student>
+  <student id="2">
+    <FullName>Yasuo Project</FullName>
+    <DateOfBirth>6/10/2009</DateOfBirth>
+    <Avatar>02.jpg</Avatar>
+  </student>
+</students>

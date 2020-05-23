@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Download Image";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h3>Download File</h3>
+        <img src="../../Imgs/@ViewBag.Image" class="img-responsive" style="width: 20vw; height: auto;"/>
+        <br/>
+        <form method="post" action="/UpDown/Download_File?name=@ViewBag.Image">
+            <input type="submit" class="btn btn-primary" value="Download" />
+        </form>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

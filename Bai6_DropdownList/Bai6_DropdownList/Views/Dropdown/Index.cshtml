@@ -1,0 +1,43 @@
+﻿@{ 
+    ViewBag.Title = "Dropdown List Flower";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <select id="selectFlower" onchange="showFlower()">
+                    @foreach (var item in ViewBag.Flowers)
+                    {
+                        <option value="@item.FileName">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <img id="imgSelect" class="img-responsive" />
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $("#imgSelect").attr("src", "../../Imgs/" + '@Session["default"]');
+
+        function showFlower() {
+            var selectIndex = document.getElementById("selectFlower").selectedIndex;
+            var optionSelected = document.getElementById("selectFlower").options[selectIndex];
+
+            $("#imgSelect").attr("src", "../../Imgs/" + optionSelected.value);
+        }
+    </script>
+</body>
+</html>

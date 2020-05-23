@@ -1,0 +1,146 @@
+﻿@{
+    ViewBag.Title = "Đơn Đặt Hàng";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="border-bottom: 1px solid gray; padding: 0.5em;">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-6">
+                <h4 class="text-center">ĐƠN ĐẶT HÀNG</h4>
+            </div>
+            <div class="col-sm-3">
+            </div>
+        </div>
+        <div class="row" style="margin-top: 1em;">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-6">
+                <form>
+                    <label for="text">Khách Hàng</label>
+                    <input type="text" name="tenKH" id="tenKH" />
+                    <br />
+                    <label for="text">Địa Chỉ</label>
+                    <input type="text" name="diaChi" id="diaChi" />
+                    <br />
+                    <label for="text">Mã Số Thuế</label>
+                    <input type="text" name="maThue" id="maThue" />
+                    <br />
+                    <div class="row" style="padding-top: 1em;">
+                        <div class="col-sm-6" style="border-right: 1px solid gray;">
+                            <label>Chọn Các Loại Bánh Sau</label>
+                            <select id="dsCacLoaiBanh">
+                                <option value="Hamburger">Hamburger</option>
+                                <option value="Bánh Táo">Bánh Táo</option>
+                                <option value="Bánh Plan">Bánh Plan</option>
+                                <option value="Bánh Matcha">Bánh Matcha</option>
+                            </select>
+                            <br /><br />
+                            <label>Số Lượng</label>
+                            <input type="text" name="soLuong" id="soLuong" />
+
+                            <input type="button" value="Thêm Vào Giỏ Hàng >" id="btnThemSP" style="margin-top: 0.5em;" />
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Danh Sách Bánh Được Đặt</label>
+                            <br />
+                            <table class="dsDonHang" id="tableDonHang">
+                                <thead>
+                                    <tr>
+                                        <td style="font-weight: bold; padding:0 1em;">Loại Bánh</td>
+                                        <td style="font-weight: bold; padding:0 1em;">Số Lượng</td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+
+
+                            </table>
+                        </div>
+                    </div>
+                    <br />
+                    <input type="button" value="In Hoá Đơn" id="btnInHoaDon" class="btn btn-success" />
+                </form>
+            </div>
+            <div class="col-sm-3">
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $('.dsDonHang').on('click', '.btnXoa', function () {
+            $(this).closest('tr').remove();
+        });
+
+        $("#btnThemSP").click(function () {
+            let dsCacLoaiBanh = document.getElementById("dsCacLoaiBanh").selectedIndex;
+            let LoaiBanh = document.getElementById("dsCacLoaiBanh").options[dsCacLoaiBanh];
+
+            if ($("#soLuong").val().trim() == "") {
+                alert("Nhập Số Lượng Cần Mua");
+                return;
+            }
+
+            let sanPham = "<tr style='cursor: pointer;'><td>" + LoaiBanh.value + "</td ><td style='text-align: center;'>" + $("#soLuong").val() + "</td><td><button class='btnXoa'>Xoá</button></td></tr>";
+            $('.dsDonHang').last().append(sanPham);
+        });
+
+        $('#btnInHoaDon').click(() => {
+            var sanPhams = new Array();
+            var donHangs = new Array();
+            var DonHang = {};
+
+            DonHang.HoTen = $("#tenKH").val();
+            DonHang.DiaChi = $("#diaChi").val();
+            DonHang.MaSoThue = $("#maThue").val();
+
+            if ($("#soLuong").val().trim() == "") {
+                alert("Nhập Số Lượng Cần Mua");
+                return;
+            }
+
+            $(".dsDonHang").find("tr:gt(0)").each(function () {
+                var lb = $(this).find("td:eq(0)").text();
+                var sl = $(this).find("td:eq(1)").text();
+
+                var SanPham = {};
+
+                SanPham.TenSanPham = lb;
+                SanPham.SoLuong = sl;
+
+                sanPhams.push(SanPham);
+                DonHang.sanPhams = sanPhams;
+            });
+            
+            donHangs.push(DonHang);
+
+            $.ajax({
+                async: true,
+                type: "POST",
+                dataType: "JSON",
+                contentType: "application/json",
+                url: "/DonHang/CreateOrder",
+                data: "{donHangs:"+JSON.stringify(donHangs)+"}",
+                success: function (data) {
+                    window.location.href = "@Url.Action("Review","DonHang")";
+                },
+                error: function () {
+                    alert("Error");
+                },
+            });
+        });
+
+    </script>
+</body>
+</html>

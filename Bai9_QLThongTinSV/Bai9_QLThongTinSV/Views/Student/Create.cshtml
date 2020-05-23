@@ -1,0 +1,100 @@
+﻿@model Bai9_QLThongTinSV.Models.Student
+@using Bai9_QLThongTinSV.HTMLHelpers
+
+@{
+    ViewBag.Title = "Create Student";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script type="text/javascript">
+        if (("@ViewBag.Message") != "") {
+            alert("@ViewBag.Message");
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+       <div class="row">
+           <div class="col-sm-12"><h4><b>Create Student</b></h4></div>
+       </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                @using (Html.BeginForm("Create", "Student", FormMethod.Post, new { @enctype= "multipart/form-data", id = "frmStudent" }))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.StudentID)
+                        @Html.EditorFor(m => m.StudentID, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.FullName)
+                        @Html.EditorFor(m => m.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.DateOfBirth)
+                        @Html.TextBoxFor(m => m.DateOfBirth, new { @type = "date", @class = "form-control"})
+                    </div>
+
+                    <div class="form-group">
+                        <label for="file">Upload Avatar</label>
+                        <input type="file" name="imageUpload" id="imageUpload" />
+                    </div>
+
+                    <img style="margin: 1em 0; width: 50%;" class="img-responsive" id="imgReview"/>
+
+                    <button type="submit" id="btnSave" class="btn btn-success">Save</button>
+                }
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        var allOK = false;
+
+        $("#imageUpload").change((e) => {
+            var fileName = e.target.files[0].name;
+            var regex = /^(\w+\s?\-?_?\.?)+(\.jpg|\.png)$/;
+
+            if (!(regex.test(fileName))) {
+                alert("File Not Image !");
+                $("#imageUpload").val('');
+            } else {
+                var reader = new FileReader();//Khoi Tao Bien Thuc Hien Doc File
+
+                reader.readAsDataURL(e.target.files[0]);//Parse File base64
+
+                //Load File Image Lên Cái Tag img
+                reader.onload = (e) => {
+                    $("#imgReview").attr("src", e.target.result);
+                }
+
+                allOK = true;
+            }
+        });
+
+        $("#frmStudent").submit(() => {
+            if ($("#imageUpload").val() == "") {
+                alert("Chưa Chọn Hình Ảnh !");
+                return false;
+            }
+
+            if (allOK) {
+                return true;
+            }
+            return false;
+        });
+    </script>
+</body>
+</html>

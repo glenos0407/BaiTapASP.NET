@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "Phiếu Ý Kiến";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <style>
+        table > thead > tr > th {
+            width: 20vw;
+        }
+
+        table > thead > tr > th, table > tbody > tr > td {
+            padding: 0.5em;
+        }
+
+        #resultArea {
+            border-top: 1px solid gray;
+            padding: 1em 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <h4 style="font-weight: 600;">Phiếu Khảo Sát Ý Kiến Người Dùng Của Hãng ABX</h4>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="col-sm-6">
+                    <h4 style="font-weight: 600;">Bạn hãy chọn sản phẩm</h4>
+                </div>
+                <div class="col-sm-6">
+                    <h4 style="font-weight: 600;">Các tiêu chuẩn bình chọn</h4>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <form action="/Opinion/Index" method="post">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="radio" name="product" value="maygiat" required />&nbsp;Máy Giặt
+                            <br />
+                            <input type="radio" name="product" value="tivi" required />&nbsp;Tivi
+                            <br />
+                            <input type="radio" name="product" value="tulanh" required />&nbsp;Tủ Lạnh
+                            <br />
+                            <input type="radio" name="product" value="daudvd" required />&nbsp;Đầu DVD
+                            <br />
+                            <input type="radio" name="product" value="loviba" required />&nbsp;Lò Vi Ba
+                            <br />
+                            <input type="radio" name="product" value="noicom" required />&nbsp;Nồi Cơm Điện
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="checkbox" name="vote1" id="vote1" value="Mẫu mã gọn và đẹp" />&nbsp;Mẫu mã gọn và đẹp
+                            <br />
+                            <input type="checkbox" name="vote2" id="vote2" value="Có nhiều chức năng tuỳ chọn" />&nbsp;Có nhiều chức năng tuỳ chọn
+                            <br />
+                            <input type="checkbox" name="vote3" id="vote3" value="Có nhiều giá thích hợp với người mua" />&nbsp;Có nhiều giá thích hợp với người mua
+                        </div>
+                    </div>
+                    <hr style="margin: 1em 0;" />
+                    <input type="submit" class="btn btn-success" value="Xem Thông Tin Bình Chọn" />
+                </form>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+        <br />
+        <div class="row" style="border-top: 1px solid gray; padding: 0.8em;">
+            <h4 style="font-weight: 600;">Kết Quả Bình Chọn</h4>
+        </div>
+        <div class="row">
+            <div class="col-sm-12" id="resultArea">
+                <span id="txtSelectProduct" class="text-danger"></span>
+                <br /><br />
+                @try
+                {
+                    if (@ViewBag.Votes.Count > 0)
+                    {
+                        for (int i = 0; i < @ViewBag.Votes.Count; i++)
+                        {
+                            <p class="text-danger">&nbsp; @(i+1). &nbsp; @ViewBag.Votes[i]</p>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-danger">Bạn Chưa Đánh Giá !</p>
+                    }
+                }
+                catch { }
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+        function renderSelected(key) {
+            switch (key) {
+                case "maygiat":
+                    $("#txtSelectProduct").text("Bạn đang chọn: Máy Giặt");
+                    break;
+                case "tivi":
+                    $("#txtSelectProduct").text("Bạn đang chọn: Tivi");
+                    break;
+                case "tulanh":
+                    $("#txtSelectProduct").text("Bạn đang chọn: Tủ Lạnh");
+                    break;
+                case "daudvd":
+                    $("#txtSelectProduct").text("Bạn đang chọn: Đầu DVD");
+                    break;
+                case "loviba":
+                    $("#txtSelectProduct").text("Bạn đang chọn: Lò Vi Ba");
+                    break;
+                case "noicom":
+                    $("#txtSelectProduct").text("Bạn đang chọn: Nồi Cơm");
+                    break;
+            }
+        }
+
+        $('input[type="radio"]').on('change', function () {
+                    let selectingValue = $('input[type="radio"]:checked').val();
+                    renderSelected(selectingValue);
+        });
+
+        if ("@ViewBag.Selected".trim() != "") {
+            renderSelected("@ViewBag.Selected");
+        }
+    </script>
+</body>
+</html>

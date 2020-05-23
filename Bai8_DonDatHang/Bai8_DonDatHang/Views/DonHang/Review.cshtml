@@ -1,0 +1,80 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Đơn Đặt Hàng";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <style>
+        table#thongTinKhachOrder tr td {
+            padding-right: 1em;
+        }
+
+        #OrderBill{
+            width: 20vw;
+            margin: 0 auto;
+        }
+        #OrderBill > div{
+            display: grid;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="OrderBill">
+            <div>
+                <h4><b>Hoá Đơn Bán Hàng</b></h4>
+                <div style="border-top: 1px solid black;"></div>
+                <br />
+                <table id="thongTinKhachOrder">
+                    <tr>
+                        <td><span><b>Khách Hàng</b></span></td>
+                        <td><span>@ViewBag.KhachHang</span></td>
+                    </tr>
+                    <tr>
+                        <td><span><b>Địa Chỉ</b></span></td>
+                        <td><span>@ViewBag.DiaChi</span></td>
+                    </tr>
+                    <tr>
+                        <td><span><b>Mã Số Thuế</b></span></td>
+                        <td><span>@ViewBag.MaSoThue</span></td>
+                    </tr>
+                </table>
+            </div>
+
+           <hr style="border: 1px solid black; width: 52%;"/>
+
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td style="font-weight: bold; padding-right: 1em;">Loại Bánh</td>
+                            <td style="font-weight: bold;  padding-right: 1em;">Số Lượng</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Bai8_DonDatHang.Models.SanPham sp in ViewBag.SanPhams)
+                        {
+                            <tr>
+                                <td style="padding-right: 1em;">@sp.TenSanPham</td>
+                                <td style="padding-right: 1em;">@sp.SoLuong</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿@{ 
+    ViewBag.Title = "Upload Image";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h3>Chọn Hình</h3>
+        <br />
+        <form method="post" action="/UpDown/Down" enctype="multipart/form-data">
+            <input type="file" name="ImageUploadFile" id="ImageUploadFile" />
+            <br />
+            <input type="submit" name="btnSubmit" value="Upload" class="btn btn-success" />
+        </form>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        var allOK = false;
+
+        document.getElementById("ImageUploadFile").addEventListener("change", function () {
+            var regex = /^(\w+\s?\-?_?\.?)+(\.jpg|\.png)$/;
+            var filePath = document.getElementById("ImageUploadFile").value;
+            var fileNames = filePath.split("\\");
+
+            if (!(regex.test(fileNames[fileNames.length - 1]))) {
+                alert("File Not Image !");
+                $("#ImageUploadFile").val('');
+            } else {
+                allOK = true;
+            }
+        });
+
+        function check_before() {
+            if (allOK) {
+                return true;
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "Staff Information";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div.row:first-child {
+            border-bottom: 1px solid gray;
+            display: flex;
+            justify-content: center;
+        }
+
+            div.row:first-child > h4 {
+                padding: 1em 0;
+            }
+
+        div.row:nth-child(2) {
+            padding: 1em 0;
+        }
+
+        #btnSave {
+            margin-top: 1.5em;
+            width: 10vw;
+        }
+
+        #btnOpen {
+            margin-top: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h3>@ViewBag.Title</h3>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <img class="img-responsive" style="width: 80%;" src="@ViewBag.ImageSrc" />
+            </div>
+            <div class="col-sm-6">
+                <form method="post" action="/Staff/Save" enctype="multipart/form-data" onsubmit="check_before()">
+                    <div class="form-group">
+                        <label for="text">Staff ID</label>
+                        <input type="text" name="txtID" value="@ViewBag.ID" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="text">Staff Name</label>
+                        <input type="text" name="txtName" value="@ViewBag.StaffName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="text">Date Of Birth</label>
+                        <input type="date" name="txtDateofBirth" value="@ViewBag.DateofBirth" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="text">Salary</label>
+                        <input type="text" name="txtSalary" value="@ViewBag.Salary" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="file">Image</label>
+                        <input type="file" id="fileUpload" name="fileImageUpload">
+                    </div>
+
+                    <input type="submit" value="Save" class="btn btn-success" id="btnSave" />
+                    <input type="button" value="Open" class="btn btn-primary" id="btnOpen" data-toggle="modal" data-target="#listFileModal" />
+                </form>
+            </div>
+        </div>
+
+        <div class="modal fade" id="listFileModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label>Choose File</label>
+                        <form method="post">
+                            <select style="width: 60%; padding: 0.5em;" id="files">
+                                @if (ViewBag.Files != null)
+                                {
+                                    foreach (var item in ViewBag.Files)
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                }
+                            </select>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="choose_file()">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        var allOK = false;
+
+        function choose_file() {
+            var getID = document.getElementById("files").selectedIndex;
+            var fileName = document.getElementById("files").options;
+            window.location = "/Staff/Open/?select_file=" + fileName[getID].value;
+        }
+
+        document.getElementById("fileUpload").addEventListener("change", function () {
+            var regex = /^(\w+\s?\-?_?\.?)+(\.jpg|\.png)$/;
+            var filePath = document.getElementById("fileUpload").value;
+            var fileNames = filePath.split("\\");
+
+            if (!(regex.test(fileNames[fileNames.length - 1]))) {
+                alert("File Not Image !");
+                $("#fileUpload").val('');
+            } else {
+                allOK = true;
+            }
+        });
+
+        function check_before() {
+            if (allOK) {
+                return true;
+            } 
+
+            return false;
+        }
+
+    </script>
+</body>
+</html>
+

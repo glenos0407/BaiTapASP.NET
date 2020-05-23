@@ -1,0 +1,100 @@
+﻿@{ 
+    ViewBag.Title = "Send Mail";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <style>
+        #txtContent{
+            height:30vh;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+        }
+
+        form {
+            width: 300px;
+        }
+
+        body{
+            background-color: rgb(35,35,35);
+        }
+
+        label{
+            color: darkgray;
+        }
+
+        form{
+            background-color: rgb(45,45,45);
+            padding: 2em;  
+            width: 22vw;
+            text-align: end;
+        }
+
+        div.form-group>input{
+            background-color: rgb(45,45,45);
+            outline: none;
+            color: gainsboro;
+            border-radius: 0;
+            border: none;
+            box-shadow: none;   
+            border-bottom: 1px solid green;
+        }
+
+        input[type="submit"]{
+            width: 8vw;
+        }
+
+        textarea{
+            border: none;
+            border-radius: 0;
+            background-color: gainsboro;
+        }
+    </style>
+    <script type="text/javascript">
+        if ("@ViewBag.Message".trim() != "") {
+            alert("@ViewBag.Message");
+        }
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <form method="post" action="/Mail/Index">
+                <div class="form-group" style="text-align: start;">
+                    <label for="email">From</label>
+                    <input type="email" class="form-control" name="txtSender"/>
+                </div>
+                <div class="form-group" style="text-align: start;">
+                    <label for="email">To</label>
+                    <input type="email" class="form-control" name="txtReceiver" />
+                </div>
+                <div class="form-group" style="text-align: start;">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="pwd" />
+                </div>
+                <div class="form-group" style="text-align: start;">
+                    <label for="text">Subject</label>
+                    <input type="text" class="form-control" name="txtSubject" />
+                </div>
+                <div class="form-group" style="text-align: start;">
+                    <label for="textarea">Content</label>
+                    <textarea class="form-control" id="txtContent" name="txtContent"></textarea>
+                </div>
+
+                <input type="submit" value="Send" class="btn btn-primary"/>
+            </form>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
