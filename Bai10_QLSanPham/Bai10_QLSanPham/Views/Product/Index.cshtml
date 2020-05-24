@@ -1,0 +1,102 @@
+﻿@model List<Bai10_QLSanPham.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        table tr td {
+            text-align: center;
+            padding: 1em;
+        }
+
+            table tr td div.col-sm-12 div.row:nth-child(2) a {
+                display: flex;
+                justify-content: center;
+            }
+
+            table tr td div.col-sm-12 div.row:nth-child(2) a img:hover {
+                transform:translateY(-5px);
+            }
+
+            table tr td div.col-sm-12 {
+                border: 1px solid rgb(200,200,200);
+            }
+
+                table tr td div.col-sm-12 div.row {
+                    padding: 1em;
+                }
+
+                    table tr td div.col-sm-12 div.row:first-child {
+                        background-color: rgb(200, 200, 200);
+                    }
+
+                        table tr td div.col-sm-12 div.row:first-child a{
+                             color: black;
+                        }
+
+                        table tr td div.col-sm-12 div.row:last-child {
+                            background-color: rgb(200, 200, 200);
+                        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12" style="padding: 0;">
+                <nav class="navbar navbar-inverse" style="border-radius: 0; display: flex; justify-content: center;">
+                    <ul class="nav navbar-nav">
+                        <li><a href="@Url.Action("Index","Product")">Home</a></li>
+                        <li><a href="@Url.Action("Create","Product")">Create</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12" style="padding: 0;">
+                <h3>Product List</h3>
+            </div>
+        </div>
+        <div class="row" style="border-top: 1px solid gray; padding-top: 1em; ">
+            <table id="tblProduct">
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        @while (i < Model.Count)
+                        {
+                            <td>
+                                <div class="col-sm-12">
+                                    <div class="row"><a href="@Url.Action("Detail","Product", new { id = Model[i].ProductID})"><b>@Model[i].Name</b></a></div>
+                                    <div class="row"><a href="@Url.Action("Detail","Product", new { id = Model[i].ProductID})"><img src="../../Imgs/@Model[i].Image" class="img-responsive" style="width: 50%;" /></a></div>
+                                    <div class="row">
+                                        <div class="col-sm-6" style="text-align: left;"><span><b>$ @Model[i].Price</b></span></div>
+                                        <div class="col-sm-6" style="text-align: right;"><a href="#"><b>Add to Cart</b></a></div>
+                                    </div>
+                                </div>
+                            </td>
+                            if ((i + 1) % 4 == 0) { break; }
+                            i++;
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<products>
+  <product id="1">
+    <Name>Iphone 11</Name>
+    <Price>699</Price>
+    <Image>ip11.jpg</Image>
+  </product>
+  <product id="2">
+    <Name>Iphone 11 Pro Max</Name>
+    <Price>1359</Price>
+    <Image>ip11promax.jpg</Image>
+  </product>
+  <product id="10">
+    <Name>Oppo Reno 3</Name>
+    <Price>390</Price>
+    <Image>oppo_reno3.jpg</Image>
+  </product>
+  <product id="5">
+    <Name>Samsung 20 +</Name>
+    <Price>699</Price>
+    <Image>ss20.jpg</Image>
+  </product>
+  <product id="4">
+    <Name>Huawei P40</Name>
+    <Price>489</Price>
+    <Image>huaweip40.jpg</Image>
+  </product>
+  <product id="6">
+    <Name>Oppo A91</Name>
+    <Price>459</Price>
+    <Image>oppoa91.jpg</Image>
+  </product>
+  <product id="8">
+    <Name>Oppo Reno 3</Name>
+    <Price>489</Price>
+    <Image>oppo_reno3.jpg</Image>
+  </product>
+  <product id="7">
+    <Name>Vivo U10</Name>
+    <Price>699</Price>
+    <Image>vivou10.jpg</Image>
+  </product>
+  <product id="15">
+    <Name>Oppo Reno 3</Name>
+    <Price>200</Price>
+    <Image>oppo_reno3.jpg</Image>
+  </product>
+  <product id="11">
+    <Name>Samsung S10 Plus</Name>
+    <Price>439</Price>
+    <Image>ss10plus.jpg</Image>
+  </product>
+</products>

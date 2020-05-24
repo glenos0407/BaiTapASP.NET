@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<posts>
+  <post id="1">
+    <name>Ngôn Ngữ C#</name>
+    <category>Công Nghệ Thông Tin</category>
+    <file>baiviet1.txt</file>
+  </post>
+  <post id="2">
+    <name>Ngôn Ngữ Java</name>
+    <category>Công Nghệ Thông Tin</category>
+    <file>baiviet2.txt</file>
+  </post>
+</posts>

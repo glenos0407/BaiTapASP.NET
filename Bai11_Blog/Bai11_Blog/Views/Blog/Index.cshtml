@@ -1,0 +1,122 @@
+﻿@model List<Bai11_Blog.Models.Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <style>
+        #header_img {
+            background-image: url(../../imgs/header-bg.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 15vh;
+        }
+
+        nav div ul li {
+            width: 15vw;
+            text-align: center;
+        }
+
+            nav div ul li a {
+                color: gray;
+            }
+
+        #listLoaiBaiViet {
+            list-style-type: circle;
+        }
+
+            #listLoaiBaiViet li {
+                padding: 0.3em 0;
+            }
+
+                #listLoaiBaiViet li a {
+                    font-size: 1.1em;
+                }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div id="header_img"></div>
+            <div>
+                <nav class="navbar" style="border-radius: 0; background-color: rgb(35,35,35);">
+                    <div class="container-fluid">
+                        <ul class="nav navbar-nav">
+                            <li><a href="@Url.Action("Index","Blog")">TRANG CHỦ</a></li>
+                            <li><a href="#">ĐĂNG KÝ</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-9" style="padding-right: 5em;">
+                <div class="row" style="padding: 1em 5em 0 0; border-bottom: 1px solid lightgray;">
+                    <h4><b>CÁC BÀI VIẾT NỔI BẬT</b></h4>
+                </div>
+                @foreach (Bai11_Blog.Models.Post p in Model)
+                {
+            <div class="row" style="padding: 0.5em 0 0.5em 1.5em; border-bottom: 1px solid lightgray;">
+                <h4><b>@p.Name</b></h4>
+                <h5><b>Loại Bài Viết: @p.Category</b></h5>
+                <p>
+                    @for (int i = 0; i < 1; i++)
+                    {
+                        @p.Content[i];
+                    }
+                </p>
+                @Html.ActionLink("Xem Chi Tiết", "Detail", new { id = p.PostID })
+            </div>
+                }
+            </div>
+            <div class="col-sm-3" style="padding-left: 2em;">
+                <div class="row" style="border: 1px solid lightgray;">
+                    <form method="post" style="text-align: center; padding: 1em;">
+                        <div class="form-group" style="text-align: left;">
+                            <label for="txtUserName">Username</label>
+                            <input type="text" class="form-control" id="txtUserName" name="txtUserName" style="border-radius: 0px;" />
+                        </div>
+                        <div class="form-group" style="text-align: left;">
+                            <label for="txtPassword">Password</label>
+                            <input type="password" class="form-control" id="txtPWD" name="txtPWD" style="border-radius: 0px;" />
+                        </div>
+
+                        <input type="submit" value="Sign In" class="btn btn-success" style="width: 10vw; border-radius: 0px;" />
+                    </form>
+                </div>
+                <br />
+                <div class="row" style="padding: 1em; border: 1px solid lightgray;">
+                    <div class="row" style="padding-left: 1em;"><h4 style="font-weight: 500;">CÁC LOẠI BÀI VIẾT</h4></div>
+                    <div class="row">
+                        <ul id="listLoaiBaiViet">
+                            <li><a href="#">Công Nghệ Thông Tin</a></li>
+                            <li><a href="#">Kinh Tế</a></li>
+                            <li><a href="#">Truyện Cười</a></li>
+                            <li><a href="#">Tài Chính Ngân Hàng</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div style="width: 100%; text-align: center; background-color: rgb(35,35,35); padding: 1em 0;">
+                <span style="color: gray;">Khoa CNTT - IUH</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
