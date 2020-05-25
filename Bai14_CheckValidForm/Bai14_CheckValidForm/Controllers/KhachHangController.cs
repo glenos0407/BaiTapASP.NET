@@ -12,5 +12,21 @@ namespace Bai14_CheckValidForm.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Index(Bai14_CheckValidForm.Models.KhachHang khachHang, HttpPostedFileBase fImage)
+        {
+            khachHang.Image = fImage.FileName;
+
+            if (ModelState.IsValid)
+            {
+                ViewBag.Message = "Successfully !";
+                return View();
+            }
+
+            ViewBag.Message = "";
+
+            return View();
+        }
     }
 }

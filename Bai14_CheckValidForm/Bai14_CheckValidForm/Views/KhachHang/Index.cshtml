@@ -1,1 +1,190 @@
-﻿
+﻿@model Bai14_CheckValidForm.Models.KhachHang
+
+@{
+    ViewBag.Title = "Check Valid Form";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title @ViewBag.Message</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script type="text/javascript">
+        if (("@ViewBag.Message") != "") {
+            alert("@ViewBag.Message");
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                @using (Html.BeginForm("Index", "KhachHang", FormMethod.Post, new { @enctype = "multipart/form-data", @id="frmKhachHang" }))
+                {
+                    <div class="form-group">
+                        <label for="txtTenDangNhap">Ten Dang Nhap</label>
+                        @Html.TextBoxFor(model => model.TenDangNhap, new { @class = "form-control", @id = "txtTenDangNhap" })
+                        @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger", @id="errTenDangNhap" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtMatKhau">Mat Khau</label>
+                        @Html.PasswordFor(model => model.MatKhau, new { @class = "form-control", @id = "txtMatKhau" })
+                        @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger", @id = "errMatKhau" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtNhapLaiMatKhau">Nhap Lai Mat Khau</label>
+                        <input type="password" class="form-control" id="txtNhapLaiMatKhau" />
+                        <span id="errNhapLaiMatKhau" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtHoTen">Ho va Ten</label>
+                        @Html.TextBoxFor(model => model.HoVaTen, new { @class = "form-control", @id = "txtHoTen" })
+                        @Html.ValidationMessageFor(model => model.HoVaTen, "", new { @class = "text-danger", @id = "errHoTen" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtHoTen">Gioi Tinh</label>
+                        <br />
+                        @Html.RadioButtonFor(model => model.GioiTinh, "nam")&nbsp;Nam
+                        <br />
+                        @Html.RadioButtonFor(model => model.GioiTinh, "nu")&nbsp;Nu
+                        <br />
+                        @Html.RadioButtonFor(model => model.GioiTinh, "khac")&nbsp;Khong Muon De Cap
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtEmail">Email</label>
+                        @Html.TextBoxFor(model => model.Email, new { @type = "email", @class = "form-control", @id = "txtEmail" })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtSDT">So Dien Thoai</label>
+                        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @id = "txtSDT" })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtNgaySinh">Ngay Sinh</label>
+                        @Html.TextBoxFor(model => model.NgaySinh, new { @type = "date", @class = "form-control", @id = "txtNgaySinh" })
+                        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger", @id = "errNgaySinh" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtDiaChi">Dia Chi</label>
+                        @Html.TextBoxFor(model => model.DiaChi, new { @class = "form-control", @id = "txtDiaChi" })
+                        @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fImage">Hinh Anh</label>
+                        <input type="file" name="fImage" id="fImage" />
+                        <br>
+                        <span id="errImage" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtCaptcha">Tong Cua 2 So La Bao Nhieu ?&emsp;</label>
+                        <br />
+                        <span id="calculation" style="font-size: 1.5em;"></span>
+                        <input type="text" id="txtCaptcha" name="txtCaptcha" class="form-control"/>
+                        <span id="errCaptcha" class="text-danger"></span>
+                    </div>
+
+                    <input type="submit" value="Xac Nhan" class="btn btn-success" style="width: 100%; margin-top: 1em;" onclick="submit_click()"/>
+                }
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        var num1 = (Math.floor(Math.random() * 9) + 1);
+        var num2 = Math.floor(Math.random() * 10);
+        var num3 = (Math.floor(Math.random() * 9) + 1);
+        
+        $("#calculation").text(num1 + num2 + " + " + num3 + " = ");
+
+        $("#fImage").change((e) => {
+            var regex_image = /^^(\w+\s?\-?_?\.?)+(\.jpg|\.png|\.gif)$$/;
+
+            if (!regex_image.test(e.target.files[0].name)) {
+                $("#errImage").text("Khong Ho Tro Loai File Nay");
+                return false;
+            } else {
+                $("#errImage").text("");
+            }
+        });
+
+        function Check_Valid() {
+            //Check Ten Dang Nhap
+            if ($("#txtTenDangNhap").val().trim() == "") {
+                $("#errTenDangNhap").text("Truong Bat Buoc");
+            } else {
+                $("#errTenDangNhap").text("");
+            }
+
+            //Check Nhap Lai Mat Khau
+            if ($("#txtNhapLaiMatKhau").val().trim() == "") {
+                $("#errNhapLaiMatKhau").text("Truong Bat Buoc");
+            } else {
+                $("#errNhapLaiMatKhau").text("");
+
+                if ($("#txtNhapLaiMatKhau").val() != $("#txtMatKhau").val()) {
+                    $("#errNhapLaiMatKhau").text("Mat Khau Khong Trung Khop");
+                } else {
+                    $("#errNhapLaiMatKhau").text("");
+                }
+            }
+            
+            //Check Mat Khau
+            if ($("#txtMatKhau").val().trim() == "") {
+                $("#errMatKhau").text("Truong Bat Buoc");
+            } else {
+                $("#errMatKhau").text("");
+            }
+
+            //Check Ho Ten
+            if ($("#txtHoTen").val().trim() == "") {
+                $("#errHoTen").text("Truong Bat Buoc");
+            } else {
+                $("#errHoTen").text("");
+            }
+            
+            //Check Ngay Sinh
+            if ($("#txtNgaySinh").val().trim() == "") {
+                $("#errNgaySinh").text("Truong Bat Buoc");
+            } else {
+                $("#errNgaySinh").text("");
+            }
+
+            //Check Captcha
+            if ($("#txtCaptcha").val().trim() == "") {
+                $("#errCaptcha").text("Truong Bat Buoc");
+                return false;
+            } else {
+                $("#errCaptcha").text("");
+            }
+
+            return true;
+        }
+
+        function submit_click(){
+            if (Check_Valid()) {
+                return;
+            }
+
+            $('#frmKhachHang').submit(() => { return false; });
+        }
+    </script>
+</body>
+</html>
