@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "Facebook";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container-fluid {
+            padding: 0;
+        }
+
+        #pnlHeader {
+            background-color: #324F8B;
+            height: 90px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        label {
+            color: white;
+        }
+
+        #frmDangKy input {
+            border-radius: 5px;
+            padding: 6px 0 6px 10px;
+            border: 1px solid lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div id="pnlHeader">
+            <h1 style="margin-top: 0.8em; margin-left: 22%; color: white;"><b>facebook</b></h1>
+            <form style="align-items: center; display: flex; margin-right: 0.5em;" class="form-inline">
+                <div style="margin-right: 1em;">
+                    <label style="font-weight: 500;">Email hoặc Số Điện Thoại</label>
+                    <br />
+                    <input type="text" style="width: 14vw;" />
+                    <br />
+                    <input type="checkbox" />&nbsp;<span style="color: white;">Duy Trì Đăng Nhập</span>
+                </div>
+
+                <div>
+                    <label style="font-weight: 500;">Mật Khẩu</label>
+                    <br />
+                    <div style="float: left;">
+                        <input type="password" style="width: 14vw; margin-right: 1em;" />
+                        <br />
+                        <a href="#" style="color: white;">Quên Mật Khẩu ?</a>
+                    </div>
+                    <input type="button" value="Đăng Nhập" style="background-color: #5972A8; width: 92px; color: white; border: none; padding: 2px;" />
+                </div>
+            </form>
+        </div>
+
+        <div style="background-color: #E6E6FA; width: 100%; height: 88vh;">
+            <div class="col-sm-7" style="background-color: #E6E6FA;">
+                <div style="display: flex; justify-content: flex-end; margin-right: 0.8em;">
+                    <img src="../../imgs/bg.PNG" class="img-responsive" style="width: 68%; margin-top: 0.5em;">
+                </div>
+            </div>
+            <div class="col-sm-5" style="background-color: #E6E6FA;">
+                <br />
+                <h1><b>Đăng ký</b></h1>
+                <br />
+                <span><b>Miễn phí và sẽ luôn như vậy</b></span>
+
+                <form style="margin-top: 1em;" id="frmDangKy" method="post">
+                    <input type="text" placeholder="Họ" id="txtHo" name="txtHo" />
+                    <input type="text" placeholder="Tên" id="txtTen" name="txtTen" />
+                    <br />
+                    <span id="errHoTen" class="text-danger"></span>
+                    <br />
+                    <input type="email" placeholder="Email" style="width: 378px;" id="txtEmail" name="txtEmail" required/>
+                    <br />
+                    <span id="errEmail" class="text-danger"></span>
+                    <br />
+                    <input type="email" placeholder="Nhập Lại Email" style="width: 378px;" id="txtReEmail" name="txtReEmail" required/>
+                    <br />
+                    <span id="errReEmail" class="text-danger"></span>
+                    <br />
+                    <input type="password" placeholder="Mật Khẩu" style="width: 378px;" id="txtPass" name="txtPass" />
+                    <br />
+                    <span id="errPassword" class="text-danger"></span>
+                    <br />
+                    <input type="text" placeholder="Năm Sinh" style="width: 378px;" id="txtNamSinh" name="txtNamSinh" />
+                    <br />
+                    <span id="errNamSinh" class="text-danger"></span>
+                    <br />
+
+                    <input type="submit" value="Đăng Ký" class="btn btn-success" style=" width: 180px; padding: 6px;" id="btnDangKy" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+        function Check_Value() {
+            var regex_string = /^[A-Za-z]+\s?[A-Za-z]*$/;
+            var regex_num = /^[1-2]9[1-9][0-9]$/;
+
+            if ($("#txtHo").val().trim() == "" || $("#txtTen").val().trim() == "") {
+                ($("#errHoTen").text("Truong Bat Buoc"));
+            } else {
+                if (regex_string.test($("#txtHo").val().trim()) || regex_string.test($("#txtTen").val().trim())) {
+                    ($("#errHoTen").text(""));
+                } else {
+                    ($("#errHoTen").text("Du Lieu Khong Hop Le !"));
+                }
+            }
+
+            if ($("#txtEmail").val().trim() == "") {
+                ($("#errEmail").text("Truong Bat Buoc"));
+            } else {
+                ($("#errEmail").text(""));
+            }
+
+            if ($("#txtReEmail").val().trim() == "") {
+                ($("#errReEmail").text("Truong Bat Buoc"));
+            } else {
+                if ($("#txtReEmail").val().trim() != $("#txtEmail").val().trim()) {
+                    ($("#errReEmail").text("Du Lieu Khong Hop Le !"));
+                } else {
+                    ($("#errReEmail").text(""));
+                }
+            }
+
+            if ($("#txtPass").val().trim() == "") {
+                ($("#errPassword").text("Truong Bat Buoc"));
+            } else {
+                ($("#errPassword").text(""));
+            }
+
+            if ($("#txtNamSinh").val().trim() == "") {
+                ($("#errNamSinh").text("Truong Bat Buoc"));
+            } else {
+                if (regex_num.test($("#txtNamSinh").val().trim()) || regex_num.test($("#txtNamSinh").val().trim())) {
+                    ($("#errNamSinh").text(""));
+                    return true;
+                } else {
+                    ($("#errNamSinh").text("Du Lieu Khong Hop Le !"));
+                }
+            }
+
+            return false;
+        }
+
+        $("#frmDangKy").submit(() => {
+            if (Check_Value()) {
+                return true;
+            }
+
+            return false;
+        });
+
+
+    </script>
+</body>
+</html>
