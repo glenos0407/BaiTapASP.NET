@@ -1,0 +1,104 @@
+﻿@model List<Entity.Course_Ent>
+
+@{
+    ViewBag.Title = "Course";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/all.css" type="text/css">
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <style type="text/css">
+        table thead tr td {
+            background-color: rgb(45,45,45);
+            color: white;
+            text-align: center;
+        }
+
+        table tbody tr td {
+            text-align: center;
+        }
+
+            table tbody tr td:first-child {
+                width: 12vw;
+            }
+
+            table tbody tr td:last-child {
+                text-align: right;
+                padding-right: 1.5em;
+                width: 30vw;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Course","Course")">Course</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Register","Course")">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Student","Student")">Student</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Teacher","Teacher")">Teacher</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <br /><br />
+
+        <div class="row">
+            <div class="col-sm-12" style="text-align: center;">
+                <h3>Course List</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12" style="text-align: right;">
+                <a class="badge badge-success" style="padding: 0.5em 1em; border-radius: 0px;" href="@Url.Action("Create","Course")">+  New Course</a>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td><b>Course ID</b></td>
+                            <td><b>Course Name</b></td>
+                            <td><b>Location</b></td>
+                            <td><b>Teacher Name</b></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Entity.Course_Ent course in Model)
+                        {
+                            <tr>
+                                <td>@course.CourseID</td>
+                                <td>@course.CourseName</td>
+                                <td>@course.Location</td>
+                                <td>@course.Teacher.TeacherName</td>
+                                <td>
+                                    <a href="@Url.Action("Edit","Course", new { id = course.CourseID })" class="badge badge-primary" style="padding: 0.5em; border-radius: 0px;"><i class="fas fa-pencil-alt"></i>&ensp;Edit</a>&emsp;
+                                    <a href="@Url.Action("Detail","Course", new { id = course.CourseID })" class="badge badge-info" style="padding: 0.5em; border-radius: 0px;"><i class="fas fa-info"></i>&ensp;Detail</a>&emsp;
+                                    <a href="@Url.Action("Delete","Course", new { id = course.CourseID })" class="badge badge-danger" style="padding: 0.5em; border-radius: 0px; border: none;"><i class="far fa-trash-alt"></i>&ensp;Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
+
+

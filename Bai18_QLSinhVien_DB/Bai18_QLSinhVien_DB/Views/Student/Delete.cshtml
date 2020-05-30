@@ -1,0 +1,39 @@
+﻿@model Entity.Student_Ent
+
+@{
+    ViewBag.Title = "Delete Student";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/all.css" type="text/css">
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script type="text/javascript">
+        if (("@ViewBag.Message") != "") {
+            alert("@ViewBag.Message");
+        }
+    </script>
+</head>
+<body>
+    <a href="@Url.Action("Student","Student")">< Trở Về Trang Chủ</a>
+    <br />
+    <h3>Bạn Có Muốn Xoá ?</h3>
+    <br />
+    <span><b>Student ID:&nbsp;</b></span><span>@Model.StudentID</span>
+    <br />
+    <span><b>Student Name:&nbsp;</b></span><span>@Model.StudentName</span>
+    <br /><br />
+    <form method="post" action="@Url.Action("Delete_Accept","Student", new { id = Model.StudentID })">
+        <input type="submit" class="btn btn-success" style="border-radius: 0; width: 10vw;" value="OK"/>
+    </form>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+

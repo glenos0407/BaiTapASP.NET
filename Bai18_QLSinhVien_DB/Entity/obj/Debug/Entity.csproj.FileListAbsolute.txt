@@ -1,0 +1,12 @@
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\Entity\bin\Debug\Entity.dll.config
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\Entity\bin\Debug\Entity.dll
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\Entity\bin\Debug\Entity.pdb
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\Entity\bin\Debug\EntityFramework.dll
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\Entity\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\Entity\bin\Debug\EntityFramework.xml
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\Entity\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\Entity\obj\Debug\Entity.csprojAssemblyReference.cache
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\Entity\obj\Debug\Entity.csproj.CoreCompileInputs.cache
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\Entity\obj\Debug\Entity.csproj.CopyComplete
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\Entity\obj\Debug\Entity.dll
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\Entity\obj\Debug\Entity.pdb

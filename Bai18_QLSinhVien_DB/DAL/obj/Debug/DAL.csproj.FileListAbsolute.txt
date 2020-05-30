@@ -1,0 +1,17 @@
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\bin\Debug\DAL.dll.config
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\bin\Debug\DAL.dll
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\bin\Debug\DAL.pdb
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\bin\Debug\EntityFramework.dll
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\bin\Debug\EntityFramework.xml
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\obj\Debug\DAL.dll
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\obj\Debug\DAL.pdb
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\obj\Debug\DAL.Migrations.initv1.resources
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\obj\Debug\DAL.csproj.GenerateResource.cache
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\bin\Debug\Entity.dll
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\bin\Debug\Entity.pdb
+D:\Projects\C#\ASP.Net\Bai18_QLSinhVien_DB\DAL\bin\Debug\Entity.dll.config

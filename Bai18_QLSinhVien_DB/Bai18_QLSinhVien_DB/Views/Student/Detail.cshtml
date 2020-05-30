@@ -1,0 +1,29 @@
+﻿@model Entity.Student_Ent
+
+@{
+    ViewBag.Title = "Detail Student";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/all.css" type="text/css">
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+
+    <span><b>Student ID:&nbsp;</b></span><span>@Model.StudentID</span>
+    <br />
+    <span><b>Student Name:&nbsp;</b></span><span>@Model.StudentName</span>
+    <br />
+    <a href="@Url.Action("Student","Student")">Trở Về Trang Chủ</a>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+

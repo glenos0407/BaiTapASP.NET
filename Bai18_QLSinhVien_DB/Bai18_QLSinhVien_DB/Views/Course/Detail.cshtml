@@ -1,0 +1,34 @@
+﻿@model Entity.Course_Ent
+
+@{
+    ViewBag.Title = "Detail Course";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/all.css" type="text/css">
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+
+    <span><b>Course ID:&nbsp;</b></span><span>@Model.CourseID</span>
+    <br />
+    <span><b>Course Name:&nbsp;</b></span><span>@Model.CourseName</span>
+    <br />
+    <span><b>Location:&nbsp;</b></span><span>@Model.Location</span>
+    <br />
+    <span><b>Location:&nbsp;</b></span><span>@Model.Teacher.TeacherName</span>
+    <br />
+    <a href="@Url.Action("Course","Course")">Trở Về Trang Chủ</a>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+

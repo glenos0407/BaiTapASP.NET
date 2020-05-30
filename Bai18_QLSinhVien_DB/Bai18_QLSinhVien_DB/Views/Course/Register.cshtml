@@ -1,0 +1,95 @@
+﻿@model Entity.Register_Ent
+
+@{
+    ViewBag.Title = "Register";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/all.css" type="text/css">
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script type="text/javascript">
+        if (("@ViewBag.Message").trim() != "") {
+            alert("@ViewBag.Message");
+        }
+    </script>
+    <style type="text/css">
+        body {
+            background-color: dimgray;
+        }
+
+        #frmRegister {
+            text-align: center;
+            width: 30vw;
+            background-color: rgba(45,45,45, 0.6);
+            padding: 2em;
+        }
+
+        #box-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+
+        label {
+            color: white;
+        }
+
+        #CourseName, #txtStudentName {
+            border-radius: 0px;
+            color: white;
+            background-color: transparent;
+            outline: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: 1px solid #646464;
+        }
+
+            #CourseName option{
+                color: black;
+            }
+
+            #btnSave {
+                border-radius: 0;
+                width: 12vw;
+                padding: 0.5em 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="padding: 2em 0;">
+            <a href="@Url.Action("Course","Course")">< Back To Home</a>
+        </div>
+        <div id="box-center">
+            <form method="post" action="@Url.Action("Register","Course")" id="frmRegister">
+                <div class="form-group" style="text-align: left;">
+                    <label for="CourseName"><b>Course Name</b></label>
+                    <select class="form-control" id="CourseName" name="CourseName">
+                        @foreach (Entity.Course_Ent course_Ent in ViewBag.Courses)
+                        {
+                            <option value="@course_Ent.CourseID">@course_Ent.CourseName</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group" style="text-align: left;">
+                    <label for="txtStudentName"><b>Student Name</b></label>
+                    <input type="text" class="form-control" id="txtStudentName" name="txtStudentName"/>
+                </div>
+
+                <input type="submit" class="btn btn-success" id="btnSave" value="Save"/>
+            </form>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
+
